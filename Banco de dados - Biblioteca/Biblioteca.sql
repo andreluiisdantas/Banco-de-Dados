@@ -169,3 +169,18 @@ INSERT INTO emprestimo (id_livro, id_usuario, data_emprestimo, data_limite, data
 (10, 10, '2024-10-01', '2024-10-15', '2024-10-14');
 
 
+
+SELECT 
+	livro.titulo, 
+    autor.nome,
+    categoria.categoria,
+    usuario.nome,
+    emprestimo.data_emprestimo,
+    emprestimo.data_limite
+FROM livro 
+INNER JOIN livro_autor ON livro.id_livro = livro_autor.id_livro 
+INNER JOIN autor ON autor.id_autor = livro_autor.id_autor
+INNER JOIN livro_categoria ON livro.id_livro = livro_categoria.id_livro
+INNER JOIN categoria ON categoria.id_categoria = livro_categoria.id_categoria
+INNER JOIN emprestimo ON livro.id_livro = emprestimo.id_livro
+INNER JOIN usuario ON usuario.id_usuario = emprestimo.id_usuario;
